@@ -242,6 +242,13 @@ def run(
 
                         if save_txt:
                             # to MOT format
+                            # w, h = im0.shape[1], im0.shape[0]
+
+                            # bbox_w = (output[2] - output[0]) / w
+                            # bbox_h = (output[3] - output[1]) / h
+                            # bbox_left = output[0] / w + bbox_w / 2
+                            # bbox_top = output[1] / h + bbox_h / 2
+
                             bbox_left = output[0]
                             bbox_top = output[1]
                             bbox_w = output[2] - output[0]
