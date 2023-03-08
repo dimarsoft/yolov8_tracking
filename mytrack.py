@@ -242,25 +242,22 @@ def run(
 
                         if save_txt:
                             # to MOT format
-                            # w, h = im0.shape[1], im0.shape[0]
+                            w, h = im0.shape[1], im0.shape[0]
 
-                            # bbox_w = (output[2] - output[0]) / w
-                            # bbox_h = (output[3] - output[1]) / h
-                            # bbox_left = output[0] / w + bbox_w / 2
-                            # bbox_top = output[1] / h + bbox_h / 2
+                            bbox_w = (output[2] - output[0]) / w
+                            bbox_h = (output[3] - output[1]) / h
+                            bbox_left = output[0] / w + bbox_w / 2
+                            bbox_top = output[1] / h + bbox_h / 2
 
-                            bbox_left = output[0]
-                            bbox_top = output[1]
-                            bbox_w = output[2] - output[0]
-                            bbox_h = output[3] - output[1]
+                            # bbox_left = output[0]
+                            # bbox_top = output[1]
+                            # bbox_w = output[2] - output[0]
+                            # bbox_h = output[3] - output[1]
 
-                            c = int(cls)  # integer class
                             # класс тоже сохраним в текстовый файл
 
-                            # Write MOT compliant results to file
                             with open(txt_path + '.txt', 'a') as f:
-                                f.write(('%g ' * 11 + '\n') % (frame_idx + 1, id, bbox_left,  # MOT format
-                                                               bbox_top, bbox_w, bbox_h, -1, -1, -1, i, c))
+                                f.write(('%g ' * 7 + '\n') % (frame_idx, id, int(cls), bbox_left, bbox_top, bbox_w, bbox_h))
 
                         if save_vid or save_crop or show_vid:  # Add bbox/seg to image
                             c = int(cls)  # integer class
